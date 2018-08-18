@@ -12,7 +12,7 @@ namespace SpartanChallenge.Client
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+
         }
     }
 }
