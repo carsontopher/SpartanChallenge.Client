@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Owin;
 using Owin;
+using Newtonsoft;
 
 [assembly: OwinStartup(typeof(SpartanChallenge.Client.Startup))]
 
@@ -12,7 +13,7 @@ namespace SpartanChallenge.Client
     {
         public void Configuration(IAppBuilder app)
         {
-
+           
         }
     }
 }
