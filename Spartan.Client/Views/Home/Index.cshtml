@@ -1,0 +1,72 @@
+﻿@using Newtonsoft.Json;
+@using System.IO;
+<div class="container-fluid">
+    <div class="content">
+        <div class="row"><br /></div>
+        <div class="row">
+
+
+            <div class="col-6">
+                <button type="button" class="btn btn-info btn-block">Unit No.</button>
+
+
+            </div>
+            <div class="col-6">
+
+                <button type="button" class="btn btn-info btn-block">Item No.</button>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-12">
+        <div class="input-group input-group-lg">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-lg">Search</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+        </div>
+
+        <div class="row"><br /></div>
+        @{var myStuff = JsonConvert.DeserializeObject<Data>(File.ReadAllText("./EquipmentData.json"));
+        }
+        <table class="table table-hover" style="width: 100%;" border="2">
+            <tbody>
+                <tr style="background-color: black; color:white;">
+                    <th>Results</th>
+                </tr>
+                <tr>
+                    <td>
+                        <b>3800734</b></br>
+                        3435220</br>
+                        Fuel Tank</br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>3800734</b></br>
+                        y312uy4</br>
+                        Bomb disposal unit</br>
+                    </td>
+                </tr>
+
+                @foreach (var item in myStuff.serialisedEquipment)
+                {
+                    <tr>
+                        <td>
+                            <b>@item.Id</b><br />
+                            @item.ExternalId<br />
+                            @item.MeterReading<br />
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+    <!-- /ko -->
