@@ -6,15 +6,8 @@
         <div class="row">
 
 
-            <div class="col-6">
-                <button type="button" class="btn btn-info btn-block">Unit No.</button>
-
-
-            </div>
-            <div class="col-6">
-
-                <button type="button" class="btn btn-info btn-block">Item No.</button>
-
+            <div class="col-12">
+                <button type="button" class="btn btn-info btn-block btn-lg btn-danger" data-toggle="button" aria-pressed="true">Unit No.</button>
             </div>
         </div>
 
@@ -23,9 +16,9 @@
     <div class="col-12">
         <div class="input-group input-group-lg">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-lg">Search</span>
+                <span class="input-group-text" id="Searchbar">Search</span>
             </div>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+            <input type="text" class="form-control" placeholder="Enter an ID">
         </div>
 
         <div class="row"><br /></div>
@@ -37,33 +30,40 @@
                     <th>Results</th>
                 </tr>
                 <tr>
-                    <td>
+                    <!----  example layout
+                           <td>
                         <b>3800734</b></br>
                         3435220</br>
                         Fuel Tank</br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <b>3800734</b></br>
-                        y312uy4</br>
-                        Bomb disposal unit</br>
-                    </td>
+                    </td>  !-->
                 </tr>
 
-                @foreach (var item in myStuff.serialisedEquipment)
+
+                @foreach (var item in myStuff.equipmentType)
                 {
                     <tr>
                         <td>
-                            <b>@item.Id</b><br />
-                            @item.ExternalId<br />
-                            @item.MeterReading<br />
+                            <b>ID -- @item.Id</b><br />
+                            External ID -- @item.ExternalId<br />
+                            Description -- @item.Description<br />
                         </td>
                     </tr>
                 }
 
+
             </tbody>
         </table>
+
+        <script>
+            function myFunction() {
+                var input;
+                input = document.getElementById("Searchbar");
+                filter = input.value;
+
+                for mystuff
+                            }
+
+        </script>
 
     </div>
 
