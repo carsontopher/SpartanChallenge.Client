@@ -12,7 +12,7 @@ namespace Spartan.Client.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index(string search)
+        public IActionResult Index(string search, string options)
         {
             // load the json file from the hard drive
             Data jsonFile = JsonConvert.DeserializeObject<Data>(System.IO.File.ReadAllText("./EquipmentData.json"));

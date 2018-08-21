@@ -6,72 +6,57 @@
     <div class="content">
         <div class="row"><br /></div>
         <div class="row">
-
-
             <div class="col-12">
-                <button type="button" class="btn btn-info btn-block btn-lg btn-danger" data-toggle="button" aria-pressed="true">Unit No.</button>
+                <form method="post">
+                    <div class="btn-group btn-group-toggle btn-group-lg col-12" data-toggle="buttons">
+                        <label class="btn btn-danger active col-6">
+                            @Html.RadioButton("options", 1) Unit No.
+                        </label>
+                        <label class="btn btn-danger col-6">
+                            @Html.RadioButton("options", 2) Item No.
+                        </label>
+                    </div>
+                    <div class="input-group input-group-lg">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="Searchbar">Search</span>
+                        </div>
+                        <input type="text" class="form-control" name="search" placeholder="Enter an ID">
+                    </div>
+                </form>
+
             </div>
         </div>
 
-    </div>
+        <div class="col-12">
 
-    <div class="col-12">
-        <form method="post">
-            <div class="input-group input-group-lg">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="Searchbar">Search</span>
-                </div>
-                <input type="text" class="form-control" name="search" placeholder="Enter an ID">
-            </div>
-        </form>
 
-        <div class="row"><br /></div>
-        <table class="table table-hover" style="width: 100%;" border="2">
-            <tbody>
-                <tr style="background-color: black; color:white;">
-                    <th>Results</th>
-                </tr>
-                <tr>
-                    <!----  example layout
-                           <td>
-                        <b>3800734</b></br>
-                        3435220</br>
-                        Fuel Tank</br>
-                    </td>  !-->
-                </tr>
-
-                @foreach (var item in Model.equipmentBreakdowns)
-                {
-                    <tr>
-                        <td>
-                            <b>@item.ExternalId</b><br />
-                            @item.MeterReading<br />
-                            @item.EquipmentDescription<br />
-                        </td>
+            <div class="row"><br /></div>
+            <table class="table table-hover" style="width: 100%;" border="2">
+                <tbody>
+                    <tr style="background-color: black; color:white;">
+                        <th>Results</th>
                     </tr>
-                }
+                    <tr>
+                        <!----  example layout
+                               <td>
+                            <b>3800734</b></br>
+                            3435220</br>
+                            Fuel Tank</br>
+                        </td>  !-->
+                    </tr>
 
-            </tbody>
-        </table>
+                    @foreach (var item in Model.equipmentBreakdowns)
+                    {
+                        <tr>
+                            <td>
+                                <b>@item.ExternalId</b><br />
+                                @item.MeterReading<br />
+                                @item.EquipmentDescription<br />
+                            </td>
+                        </tr>
+                    }
 
-        <script>
-            var $rows = $('myStuff');
-            $('#search').keyup(function () {
-
-                var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
-                    reg = RegExp(val, 'i'),
-                    text;
-
-                $rows.show().filter(function () {
-                    text = $(this).text().replace(/\s+/g, ' ');
-                    return !reg.test(text);
-                }).hide();
-            });
-
-        </script>
-
-    </div>
-
-
-
-    <!-- /ko -->
+                </tbody>
+            </table>
+        </div>
+        <!-- /ko -->
