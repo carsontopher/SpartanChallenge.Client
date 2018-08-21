@@ -1,5 +1,7 @@
 ﻿@using Newtonsoft.Json;
 @using System.IO;
+@model SearchViewModel;
+
 <div class="container-fluid">
     <div class="content">
         <div class="row"><br /></div>
@@ -14,16 +16,16 @@
     </div>
 
     <div class="col-12">
-        <div class="input-group input-group-lg">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="Searchbar">Search</span>
+        <form method="post">
+            <div class="input-group input-group-lg">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="Searchbar">Search</span>
+                </div>
+                <input type="text" class="form-control" name="search" placeholder="Enter an ID">
             </div>
-            <input type="text" class="form-control" placeholder="Enter an ID">
-        </div>
+        </form>
 
         <div class="row"><br /></div>
-        @{var myStuff = JsonConvert.DeserializeObject<Data>(File.ReadAllText("./EquipmentData.json"));
-        }
         <table class="table table-hover" style="width: 100%;" border="2">
             <tbody>
                 <tr style="background-color: black; color:white;">
@@ -38,30 +40,33 @@
                     </td>  !-->
                 </tr>
 
-
-                @foreach (var item in myStuff.equipmentType)
+                @foreach (var item in Model.equipmentBreakdowns)
                 {
                     <tr>
                         <td>
-                            <b>ID -- @item.Id</b><br />
-                            External ID -- @item.ExternalId<br />
-                            Description -- @item.Description<br />
+                            <b>@item.ExternalId</b><br />
+                            @item.MeterReading<br />
+                            @item.EquipmentDescription<br />
                         </td>
                     </tr>
                 }
-
 
             </tbody>
         </table>
 
         <script>
-            function myFunction() {
-                var input;
-                input = document.getElementById("Searchbar");
-                filter = input.value;
+            var $rows = $('myStuff');
+            $('#search').keyup(function () {
 
-                for mystuff
-                            }
+                var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
+                    reg = RegExp(val, 'i'),
+                    text;
+
+                $rows.show().filter(function () {
+                    text = $(this).text().replace(/\s+/g, ' ');
+                    return !reg.test(text);
+                }).hide();
+            });
 
         </script>
 
