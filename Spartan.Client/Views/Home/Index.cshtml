@@ -9,18 +9,18 @@
             <div class="col-12">
                 <form method="post">
                     <div class="btn-group btn-group-toggle btn-group-lg col-12" data-toggle="buttons">
-                        <label class="btn btn-danger active col-6">
-                            @Html.RadioButton("options", 1) Unit No.
+                        <label class="btn col-6 @(Model.displayMode == SearchViewModel.DisplayMode.equipment_breakdown ? "active btn-danger" : "btn-default")">
+                            <input checked="checked" id="options" name="options" type="radio" value="0" onchange="this.form.submit()"/> Unit No.
                         </label>
-                        <label class="btn btn-danger col-6">
-                            @Html.RadioButton("options", 2) Item No.
+                        <label class="btn col-6 @(Model.displayMode == SearchViewModel.DisplayMode.equipment_types ? "active btn-danger" : "btn-default")">
+                            <input id="options" name="options" type="radio" value="1" onchange="this.form.submit()"/> Item No.
                         </label>
                     </div>
                     <div class="input-group input-group-lg">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="Searchbar">Search</span>
                         </div>
-                        <input type="text" class="form-control" name="search" placeholder="Enter an ID">
+                        <input type="text" class="form-control" name="search" placeholder="Enter an ID"/>
                     </div>
                 </form>
 
@@ -38,23 +38,39 @@
                     </tr>
                     <tr>
                         <!----  example layout
-                               <td>
-                            <b>3800734</b></br>
-                            3435220</br>
-                            Fuel Tank</br>
-                        </td>  !-->
+               <td>
+            <b>3800734</b></br>
+            3435220</br>
+            Fuel Tank</br>
+        </td>  !-->
                     </tr>
-
-                    @foreach (var item in Model.equipmentBreakdowns)
+                    @switch (Model.displayMode)
                     {
-                        <tr>
-                            <td>
-                                <b>@item.ExternalId</b><br />
-                                @item.MeterReading<br />
-                                @item.EquipmentDescription<br />
-                            </td>
-                        </tr>
+                        case SearchViewModel.DisplayMode.equipment_breakdown:
+                            @foreach (var item in Model.equipmentBreakdowns)
+                            {
+                                <tr>
+                                    <td>
+                                        <b>@item.ExternalId</b><br />
+                                        @item.MeterReading<br />
+                                        @item.EquipmentDescription<br />
+                                    </td>
+                                </tr>
+                            }
+                            break;
+                        case SearchViewModel.DisplayMode.equipment_types:
+                            @foreach (var item in Model.equipmentTypes)
+                            {
+                                <tr>
+                                    <td>
+                                        <b>@item.ExternalId</b><br />
+                                        @item.Description<br />
+                                    </td>
+                                </tr>
+                            }
+                            break;
                     }
+
 
                 </tbody>
             </table>

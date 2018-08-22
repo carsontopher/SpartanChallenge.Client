@@ -7,8 +7,12 @@ namespace Spartan.Client.Models
 {
     public class SearchViewModel
     {
-        public List<EquipmentBreakdown> equipmentBreakdowns = new List<EquipmentBreakdown>();
+        public List<EquipmentBreakdown> equipmentBreakdowns = null;
+        public List<EquipmentType> equipmentTypes = null;
+        public enum DisplayMode { equipment_breakdown = 0, equipment_types = 1};
+        public DisplayMode displayMode = DisplayMode.equipment_breakdown;
     }
+    
 
     public class EquipmentBreakdown
     {
